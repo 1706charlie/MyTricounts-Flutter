@@ -1,0 +1,2608 @@
+{
+  "info": {
+    "_postman_id": "a978abee-ba22-4703-bdaa-d173d61f8280",
+    "name": "prbd_2425_xyy - API",
+    "description": "Votre backend PostgREST doit publier les _**endpoints**_ repris dans cette collection. Vous devez les **respecter à la lettre** pour qu'ils puissent faire l'objet de **tests automatises**.",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "_exporter_id": "28906363"
+  },
+  "item": [
+    {
+      "name": "reset_database",
+      "event": [
+        {
+          "listen": "test",
+          "script": {
+            "exec": [
+              ""
+            ],
+            "type": "text/javascript",
+            "packages": {
+
+            }
+          }
+        },
+        {
+          "listen": "prerequest",
+          "script": {
+            "exec": [
+              ""
+            ],
+            "type": "text/javascript",
+            "packages": {
+
+            }
+          }
+        }
+      ],
+      "request": {
+        "auth": {
+          "type": "noauth"
+        },
+        "method": "POST",
+        "header": [],
+        "body": {
+          "mode": "raw",
+          "raw": "",
+          "options": {
+            "raw": {
+              "language": "json"
+            }
+          }
+        },
+        "url": {
+          "raw": "{{BASE_URL}}/rpc/reset_database",
+          "host": [
+            "{{BASE_URL}}"
+          ],
+          "path": [
+            "rpc",
+            "reset_database"
+          ]
+        },
+        "description": "Permet de reinitialiser la base de donnees avec les valeurs de test de depart (utile pour deboguer et pour les tests, mais à desactiver en production)."
+      },
+      "response": [
+        {
+          "name": "OK",
+          "originalRequest": {
+            "method": "POST",
+            "header": [],
+            "body": {
+              "mode": "raw",
+              "raw": "",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            },
+            "url": {
+              "raw": "{{BASE_URL}}/rpc/reset_database",
+              "host": [
+                "{{BASE_URL}}"
+              ],
+              "path": [
+                "rpc",
+                "reset_database"
+              ]
+            }
+          },
+          "status": "No Content",
+          "code": 204,
+          "_postman_previewlanguage": "plain",
+          "header": [
+            {
+              "key": "Date",
+              "value": "Sat, 15 Feb 2025 09:04:33 GMT"
+            },
+            {
+              "key": "Server",
+              "value": "postgrest/12.0.3 (1afd98a)"
+            },
+            {
+              "key": "Content-Range",
+              "value": "0-0/*"
+            }
+          ],
+          "cookie": [],
+          "body": null
+        }
+      ]
+    },
+    {
+      "name": "login",
+      "event": [
+        {
+          "listen": "test",
+          "script": {
+            "exec": [
+              "const jsonData = pm.response.json(); // obtenir la reponse JSON\r",
+              "const token = jsonData.token; // extraire le token d'authentification de la reponse\r",
+              "pm.collectionVariables.set(\"access_token\", pm.response.json().token); // sauver le token dans une variable\r",
+              ""
+            ],
+            "type": "text/javascript",
+            "packages": {
+
+            }
+          }
+        }
+      ],
+      "request": {
+        "auth": {
+          "type": "noauth"
+        },
+        "method": "POST",
+        "header": [],
+        "body": {
+          "mode": "raw",
+          "raw": "{\r\n    \"email\": \"\u003Cstring\u003E\",   // requis\r\n    \"password\": \"\u003Cstring\u003E\"   // requis\r\n}",
+          "options": {
+            "raw": {
+              "language": "json"
+            }
+          }
+        },
+        "url": {
+          "raw": "{{BASE_URL}}/rpc/login",
+          "host": [
+            "{{BASE_URL}}"
+          ],
+          "path": [
+            "rpc",
+            "login"
+          ]
+        },
+        "description": "Permet à un utilisateur de s'authentifier."
+      },
+      "response": [
+        {
+          "name": "OK (admin)",
+          "originalRequest": {
+            "method": "POST",
+            "header": [],
+            "body": {
+              "mode": "raw",
+              "raw": "{\r\n    \"email\": \"admin@epfc.eu\",\r\n    \"password\": \"Password1,\"\r\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            },
+            "url": {
+              "raw": "{{BASE_URL}}/rpc/login",
+              "host": [
+                "{{BASE_URL}}"
+              ],
+              "path": [
+                "rpc",
+                "login"
+              ]
+            }
+          },
+          "status": "OK",
+          "code": 200,
+          "_postman_previewlanguage": "json",
+          "header": [
+            {
+              "key": "Transfer-Encoding",
+              "value": "chunked"
+            },
+            {
+              "key": "Date",
+              "value": "Sat, 15 Feb 2025 11:32:01 GMT"
+            },
+            {
+              "key": "Server",
+              "value": "postgrest/12.0.3 (1afd98a)"
+            },
+            {
+              "key": "Content-Range",
+              "value": "0-0/*"
+            },
+            {
+              "key": "Content-Type",
+              "value": "application/json; charset=utf-8"
+            }
+          ],
+          "cookie": [],
+          "body": "{\n    \"token\": \"eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJyb2xlIjoiYWRtaW4iLCJzdWIiOiJhZG1pbkBlcGZjLmV1IiwibmFtZSI6IkFkbWluIiwidXNlcl9pZCI6OSwiZXhwIjoxNzM5NzA5MTIxfQ.lA_wdk4ZTVYmwdU0WWaFFjEN1IN8CohDStrHKoTBlms\"\n}"
+        },
+        {
+          "name": "OK (ben)",
+          "originalRequest": {
+            "method": "POST",
+            "header": [],
+            "body": {
+              "mode": "raw",
+              "raw": "{\r\n    \"email\": \"bepenelle@epfc.eu\",\r\n    \"password\": \"Password1,\"\r\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            },
+            "url": {
+              "raw": "{{BASE_URL}}/rpc/login",
+              "host": [
+                "{{BASE_URL}}"
+              ],
+              "path": [
+                "rpc",
+                "login"
+              ]
+            }
+          },
+          "status": "OK",
+          "code": 200,
+          "_postman_previewlanguage": "json",
+          "header": [
+            {
+              "key": "Transfer-Encoding",
+              "value": "chunked"
+            },
+            {
+              "key": "Date",
+              "value": "Sat, 15 Feb 2025 07:41:09 GMT"
+            },
+            {
+              "key": "Server",
+              "value": "postgrest/12.0.3 (1afd98a)"
+            },
+            {
+              "key": "Content-Range",
+              "value": "0-0/*"
+            },
+            {
+              "key": "Content-Type",
+              "value": "application/json; charset=utf-8"
+            }
+          ],
+          "cookie": [],
+          "body": "{\n    \"token\": \"eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJyb2xlIjoiYmFzaWNfdXNlciIsInN1YiI6ImJlcGVuZWxsZUBlcGZjLmV1IiwibmFtZSI6IkJlbm_DrnQiLCJ1c2VyX2lkIjoyLCJleHAiOjE3Mzk2OTUyNzB9.wX-pNF8pcboKTL2F-yDCXglWdK6f_2ldlzMIJCtgkhw\"\n}"
+        },
+        {
+          "name": "OK (boris)",
+          "originalRequest": {
+            "method": "POST",
+            "header": [],
+            "body": {
+              "mode": "raw",
+              "raw": "{\r\n    \"email\": \"boverhaegen@epfc.eu\",\r\n    \"password\": \"Password1,\"\r\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            },
+            "url": {
+              "raw": "{{BASE_URL}}/rpc/login",
+              "host": [
+                "{{BASE_URL}}"
+              ],
+              "path": [
+                "rpc",
+                "login"
+              ]
+            }
+          },
+          "status": "OK",
+          "code": 200,
+          "_postman_previewlanguage": "json",
+          "header": [
+            {
+              "key": "Transfer-Encoding",
+              "value": "chunked"
+            },
+            {
+              "key": "Date",
+              "value": "Sat, 15 Feb 2025 07:41:09 GMT"
+            },
+            {
+              "key": "Server",
+              "value": "postgrest/12.0.3 (1afd98a)"
+            },
+            {
+              "key": "Content-Range",
+              "value": "0-0/*"
+            },
+            {
+              "key": "Content-Type",
+              "value": "application/json; charset=utf-8"
+            }
+          ],
+          "cookie": [],
+          "body": "{\n    \"token\": \"eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJyb2xlIjoiYmFzaWNfdXNlciIsInN1YiI6ImJlcGVuZWxsZUBlcGZjLmV1IiwibmFtZSI6IkJlbm_DrnQiLCJ1c2VyX2lkIjoyLCJleHAiOjE3Mzk2OTUyNzB9.wX-pNF8pcboKTL2F-yDCXglWdK6f_2ldlzMIJCtgkhw\"\n}"
+        },
+        {
+          "name": "OK (geo)",
+          "originalRequest": {
+            "method": "POST",
+            "header": [],
+            "body": {
+              "mode": "raw",
+              "raw": "{\r\n    \"email\": \"gedielman@epfc.eu\",\r\n    \"password\": \"Password1,\"\r\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            },
+            "url": {
+              "raw": "{{BASE_URL}}/rpc/login",
+              "host": [
+                "{{BASE_URL}}"
+              ],
+              "path": [
+                "rpc",
+                "login"
+              ]
+            }
+          },
+          "status": "OK",
+          "code": 200,
+          "_postman_previewlanguage": "json",
+          "header": [
+            {
+              "key": "Transfer-Encoding",
+              "value": "chunked"
+            },
+            {
+              "key": "Date",
+              "value": "Sat, 15 Feb 2025 07:41:09 GMT"
+            },
+            {
+              "key": "Server",
+              "value": "postgrest/12.0.3 (1afd98a)"
+            },
+            {
+              "key": "Content-Range",
+              "value": "0-0/*"
+            },
+            {
+              "key": "Content-Type",
+              "value": "application/json; charset=utf-8"
+            }
+          ],
+          "cookie": [],
+          "body": "{\n    \"token\": \"eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJyb2xlIjoiYmFzaWNfdXNlciIsInN1YiI6ImJlcGVuZWxsZUBlcGZjLmV1IiwibmFtZSI6IkJlbm_DrnQiLCJ1c2VyX2lkIjoyLCJleHAiOjE3Mzk2OTUyNzB9.wX-pNF8pcboKTL2F-yDCXglWdK6f_2ldlzMIJCtgkhw\"\n}"
+        },
+        {
+          "name": "invalid user or password",
+          "originalRequest": {
+            "method": "POST",
+            "header": [],
+            "body": {
+              "mode": "raw",
+              "raw": "{\r\n    \"email\": \"unknown@epfc.eu\",\r\n    \"password\": \"Password1,\"\r\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            },
+            "url": {
+              "raw": "{{BASE_URL}}/rpc/login",
+              "host": [
+                "{{BASE_URL}}"
+              ],
+              "path": [
+                "rpc",
+                "login"
+              ]
+            }
+          },
+          "status": "Forbidden",
+          "code": 403,
+          "_postman_previewlanguage": "json",
+          "header": [
+            {
+              "key": "Transfer-Encoding",
+              "value": "chunked"
+            },
+            {
+              "key": "Date",
+              "value": "Sat, 15 Feb 2025 07:44:00 GMT"
+            },
+            {
+              "key": "Server",
+              "value": "postgrest/12.0.3 (1afd98a)"
+            },
+            {
+              "key": "Content-Type",
+              "value": "application/json; charset=utf-8"
+            }
+          ],
+          "cookie": [],
+          "body": "{\n    \"code\": \"28P01\",\n    \"details\": null,\n    \"hint\": null,\n    \"message\": \"invalid user or password\"\n}"
+        }
+      ]
+    },
+    {
+      "name": "signup",
+      "event": [
+        {
+          "listen": "test",
+          "script": {
+            "exec": [
+              ""
+            ],
+            "type": "text/javascript",
+            "packages": {
+
+            }
+          }
+        }
+      ],
+      "request": {
+        "auth": {
+          "type": "noauth"
+        },
+        "method": "POST",
+        "header": [],
+        "body": {
+          "mode": "raw",
+          "raw": "{\r\n    \"email\": \"\u003Cstring\u003E\",   // requis\r\n    \"password\": \"\u003Cstring\u003E\",   // requis\r\n    \"full_name\": \"\u003Cstring\u003E\",   // requis\r\n    \"iban\" : \"\u003Cstring\u003E\"    // optionnel, null par defaut\r\n}",
+          "options": {
+            "raw": {
+              "language": "json"
+            }
+          }
+        },
+        "url": {
+          "raw": "{{BASE_URL}}/rpc/signup",
+          "host": [
+            "{{BASE_URL}}"
+          ],
+          "path": [
+            "rpc",
+            "signup"
+          ]
+        },
+        "description": "Permet à un utilisateur de s'inscrire."
+      },
+      "response": [
+        {
+          "name": "OK",
+          "originalRequest": {
+            "method": "POST",
+            "header": [],
+            "body": {
+              "mode": "raw",
+              "raw": "{\r\n    \"email\": \"bibi@epfc.eu\",\r\n    \"password\": \"Password1,\",\r\n    \"full_name\": \"Bibi\",\r\n    \"iban\" : \"BE12 1234 1234 1234\"\r\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            },
+            "url": {
+              "raw": "http://localhost:3000/rpc/signup",
+              "protocol": "http",
+              "host": [
+                "localhost"
+              ],
+              "port": "3000",
+              "path": [
+                "rpc",
+                "signup"
+              ]
+            }
+          },
+          "status": "No Content",
+          "code": 204,
+          "_postman_previewlanguage": "plain",
+          "header": [
+            {
+              "key": "Date",
+              "value": "Sat, 15 Feb 2025 07:51:20 GMT"
+            },
+            {
+              "key": "Server",
+              "value": "postgrest/12.0.3 (1afd98a)"
+            },
+            {
+              "key": "Content-Range",
+              "value": "0-0/*"
+            }
+          ],
+          "cookie": [],
+          "body": null
+        },
+        {
+          "name": "already exists",
+          "originalRequest": {
+            "method": "POST",
+            "header": [],
+            "body": {
+              "mode": "raw",
+              "raw": "{\r\n    \"email\": \"bibi@epfc.eu\",\r\n    \"password\": \"Password1,\",\r\n    \"full_name\": \"Bibi\",\r\n    \"iban\" : \"BE12 1234 1234 1234\"\r\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            },
+            "url": {
+              "raw": "http://localhost:3000/rpc/signup",
+              "protocol": "http",
+              "host": [
+                "localhost"
+              ],
+              "port": "3000",
+              "path": [
+                "rpc",
+                "signup"
+              ]
+            }
+          },
+          "status": "Bad Request",
+          "code": 400,
+          "_postman_previewlanguage": "json",
+          "header": [
+            {
+              "key": "Transfer-Encoding",
+              "value": "chunked"
+            },
+            {
+              "key": "Date",
+              "value": "Sat, 15 Feb 2025 07:51:50 GMT"
+            },
+            {
+              "key": "Server",
+              "value": "postgrest/12.0.3 (1afd98a)"
+            },
+            {
+              "key": "Content-Type",
+              "value": "application/json; charset=utf-8"
+            }
+          ],
+          "cookie": [],
+          "body": "{\n    \"code\": \"P0001\",\n    \"details\": null,\n    \"hint\": null,\n    \"message\": \"User 'bibi@epfc.eu' already exists\"\n}"
+        },
+        {
+          "name": "bad password",
+          "originalRequest": {
+            "method": "POST",
+            "header": [],
+            "body": {
+              "mode": "raw",
+              "raw": "{\r\n    \"email\": \"bibi@epfc.eu\",\r\n    \"password\": \"\",\r\n    \"full_name\": \"Bibi\",\r\n    \"iban\" : \"BE12 1234 1234 1234\"\r\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            },
+            "url": {
+              "raw": "http://localhost:3000/rpc/signup",
+              "protocol": "http",
+              "host": [
+                "localhost"
+              ],
+              "port": "3000",
+              "path": [
+                "rpc",
+                "signup"
+              ]
+            }
+          },
+          "status": "Bad Request",
+          "code": 400,
+          "_postman_previewlanguage": "json",
+          "header": [
+            {
+              "key": "Transfer-Encoding",
+              "value": "chunked"
+            },
+            {
+              "key": "Date",
+              "value": "Sat, 15 Feb 2025 08:13:10 GMT"
+            },
+            {
+              "key": "Server",
+              "value": "postgrest/12.0.3 (1afd98a)"
+            },
+            {
+              "key": "Content-Type",
+              "value": "application/json; charset=utf-8"
+            }
+          ],
+          "cookie": [],
+          "body": "{\n    \"code\": \"P0001\",\n    \"details\": null,\n    \"hint\": null,\n    \"message\": \"Password must be at least 8 characters long and contain at least one digit, one uppercase letter, one lowercase letter and one special character\"\n}"
+        }
+      ]
+    },
+    {
+      "name": "get_my_tricounts",
+      "event": [
+        {
+          "listen": "test",
+          "script": {
+            "exec": [
+              ""
+            ],
+            "type": "text/javascript",
+            "packages": {
+
+            }
+          }
+        }
+      ],
+      "protocolProfileBehavior": {
+        "disableBodyPruning": true
+      },
+      "request": {
+        "method": "GET",
+        "header": [],
+        "body": {
+          "mode": "raw",
+          "raw": "",
+          "options": {
+            "raw": {
+              "language": "json"
+            }
+          }
+        },
+        "url": {
+          "raw": "{{BASE_URL}}/rpc/get_my_tricounts",
+          "host": [
+            "{{BASE_URL}}"
+          ],
+          "path": [
+            "rpc",
+            "get_my_tricounts"
+          ]
+        },
+        "description": "Permet de recuperer les tricounts auxquels l'utilisateur connecte a accès, c'est-à-dire ceux dont il est proprietaire et ceux auxquels il participe. Les tricounts sont tries par ordre decroissant de date de leur dernière operation ou, à defaut d'operations, de leur date de creation."
+      },
+      "response": [
+        {
+          "name": "OK (ben)",
+          "originalRequest": {
+            "method": "GET",
+            "header": [],
+            "body": {
+              "mode": "raw",
+              "raw": "",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            },
+            "url": {
+              "raw": "http://localhost:3000/rpc/get_my_tricounts",
+              "protocol": "http",
+              "host": [
+                "localhost"
+              ],
+              "port": "3000",
+              "path": [
+                "rpc",
+                "get_my_tricounts"
+              ]
+            }
+          },
+          "status": "OK",
+          "code": 200,
+          "_postman_previewlanguage": "json",
+          "header": [
+            {
+              "key": "Transfer-Encoding",
+              "value": "chunked"
+            },
+            {
+              "key": "Date",
+              "value": "Sat, 15 Feb 2025 09:07:05 GMT"
+            },
+            {
+              "key": "Server",
+              "value": "postgrest/12.0.3 (1afd98a)"
+            },
+            {
+              "key": "Content-Range",
+              "value": "0-0/*"
+            },
+            {
+              "key": "Content-Type",
+              "value": "application/json; charset=utf-8"
+            }
+          ],
+          "cookie": [],
+          "body": "[\n    {\n        \"id\": 4,\n        \"title\": \"Vacances\",\n        \"description\": \"A la mer du nord\",\n        \"created_at\": \"2024-10-10T19:31:09\",\n        \"creator\": 1,\n        \"participants\": [\n            {\n                \"id\": 2,\n                \"email\": \"bepenelle@epfc.eu\",\n                \"full_name\": \"Benoît\",\n                \"iban\": null,\n                \"role\": \"basic_user\"\n            },\n            {\n                \"id\": 1,\n                \"email\": \"boverhaegen@epfc.eu\",\n                \"full_name\": \"Boris\",\n                \"iban\": null,\n                \"role\": \"basic_user\"\n            },\n            {\n                \"id\": 4,\n                \"email\": \"mamichel@epfc.eu\",\n                \"full_name\": \"Marc\",\n                \"iban\": \"BE12 1234 1234 1234\",\n                \"role\": \"basic_user\"\n            },\n            {\n                \"id\": 3,\n                \"email\": \"xapigeolet@epfc.eu\",\n                \"full_name\": \"Xavier\",\n                \"iban\": null,\n                \"role\": \"basic_user\"\n            }\n        ],\n        \"operations\": [\n            {\n                \"id\": 6,\n                \"title\": \"Loterie\",\n                \"amount\": 35,\n                \"operation_date\": \"2024-10-26\",\n                \"initiator\": 1,\n                \"created_at\": \"2024-10-26T10:02:24\",\n                \"repartitions\": [\n                    {\n                        \"user\": 1,\n                        \"weight\": 1\n                    },\n                    {\n                        \"user\": 3,\n                        \"weight\": 1\n                    }\n                ]\n            },\n            {\n                \"id\": 5,\n                \"title\": \"Boucherie\",\n                \"amount\": 25.5,\n                \"operation_date\": \"2024-10-26\",\n                \"initiator\": 2,\n                \"created_at\": \"2024-10-26T09:59:56\",\n                \"repartitions\": [\n                    {\n                        \"user\": 1,\n                        \"weight\": 2\n                    },\n                    {\n                        \"user\": 2,\n                        \"weight\": 1\n                    },\n                    {\n                        \"user\": 3,\n                        \"weight\": 1\n                    }\n                ]\n            },\n            {\n                \"id\": 4,\n                \"title\": \"Aperos\",\n                \"amount\": 31.897456217,\n                \"operation_date\": \"2024-10-13\",\n                \"initiator\": 1,\n                \"created_at\": \"2024-10-13T23:51:20\",\n                \"repartitions\": [\n                    {\n                        \"user\": 1,\n                        \"weight\": 1\n                    },\n                    {\n                        \"user\": 2,\n                        \"weight\": 2\n                    },\n                    {\n                        \"user\": 3,\n                        \"weight\": 3\n                    }\n                ]\n            },\n            {\n                \"id\": 3,\n                \"title\": \"Grosses courses LIDL\",\n                \"amount\": 212.47,\n                \"operation_date\": \"2024-10-13\",\n                \"initiator\": 3,\n                \"created_at\": \"2024-10-13T21:23:49\",\n                \"repartitions\": [\n                    {\n                        \"user\": 1,\n                        \"weight\": 2\n                    },\n                    {\n                        \"user\": 2,\n                        \"weight\": 1\n                    },\n                    {\n                        \"user\": 3,\n                        \"weight\": 1\n                    }\n                ]\n            },\n            {\n                \"id\": 2,\n                \"title\": \"Plein essence\",\n                \"amount\": 75,\n                \"operation_date\": \"2024-10-13\",\n                \"initiator\": 1,\n                \"created_at\": \"2024-10-13T20:10:41\",\n                \"repartitions\": [\n                    {\n                        \"user\": 1,\n                        \"weight\": 1\n                    },\n                    {\n                        \"user\": 2,\n                        \"weight\": 1\n                    }\n                ]\n            },\n            {\n                \"id\": 1,\n                \"title\": \"Colruyt\",\n                \"amount\": 100,\n                \"operation_date\": \"2024-10-13\",\n                \"initiator\": 2,\n                \"created_at\": \"2024-10-13T19:09:18\",\n                \"repartitions\": [\n                    {\n                        \"user\": 1,\n                        \"weight\": 1\n                    },\n                    {\n                        \"user\": 2,\n                        \"weight\": 1\n                    }\n                ]\n            }\n        ]\n    },\n    {\n        \"id\": 2,\n        \"title\": \"Resto badminton\",\n        \"description\": null,\n        \"created_at\": \"2024-10-10T19:25:10\",\n        \"creator\": 1,\n        \"participants\": [\n            {\n                \"id\": 2,\n                \"email\": \"bepenelle@epfc.eu\",\n                \"full_name\": \"Benoît\",\n                \"iban\": null,\n                \"role\": \"basic_user\"\n            },\n            {\n                \"id\": 1,\n                \"email\": \"boverhaegen@epfc.eu\",\n                \"full_name\": \"Boris\",\n                \"iban\": null,\n                \"role\": \"basic_user\"\n            }\n        ],\n        \"operations\": []\n    }\n]"
+        },
+        {
+          "name": "OK (boris)",
+          "originalRequest": {
+            "method": "GET",
+            "header": [],
+            "body": {
+              "mode": "raw",
+              "raw": "",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            },
+            "url": {
+              "raw": "{{BASE_URL}}/rpc/get_my_tricounts",
+              "host": [
+                "{{BASE_URL}}"
+              ],
+              "path": [
+                "rpc",
+                "get_my_tricounts"
+              ]
+            }
+          },
+          "status": "OK",
+          "code": 200,
+          "_postman_previewlanguage": "json",
+          "header": [
+            {
+              "key": "Transfer-Encoding",
+              "value": "chunked"
+            },
+            {
+              "key": "Date",
+              "value": "Sat, 15 Feb 2025 09:08:55 GMT"
+            },
+            {
+              "key": "Server",
+              "value": "postgrest/12.0.3 (1afd98a)"
+            },
+            {
+              "key": "Content-Range",
+              "value": "0-0/*"
+            },
+            {
+              "key": "Content-Type",
+              "value": "application/json; charset=utf-8"
+            }
+          ],
+          "cookie": [],
+          "body": "[\n    {\n        \"id\": 4,\n        \"title\": \"Vacances\",\n        \"description\": \"A la mer du nord\",\n        \"created_at\": \"2024-10-10T19:31:09\",\n        \"creator\": 1,\n        \"participants\": [\n            {\n                \"id\": 2,\n                \"email\": \"bepenelle@epfc.eu\",\n                \"full_name\": \"Benoît\",\n                \"iban\": null,\n                \"role\": \"basic_user\"\n            },\n            {\n                \"id\": 1,\n                \"email\": \"boverhaegen@epfc.eu\",\n                \"full_name\": \"Boris\",\n                \"iban\": null,\n                \"role\": \"basic_user\"\n            },\n            {\n                \"id\": 4,\n                \"email\": \"mamichel@epfc.eu\",\n                \"full_name\": \"Marc\",\n                \"iban\": \"BE12 1234 1234 1234\",\n                \"role\": \"basic_user\"\n            },\n            {\n                \"id\": 3,\n                \"email\": \"xapigeolet@epfc.eu\",\n                \"full_name\": \"Xavier\",\n                \"iban\": null,\n                \"role\": \"basic_user\"\n            }\n        ],\n        \"operations\": [\n            {\n                \"id\": 6,\n                \"title\": \"Loterie\",\n                \"amount\": 35,\n                \"operation_date\": \"2024-10-26\",\n                \"initiator\": 1,\n                \"created_at\": \"2024-10-26T10:02:24\",\n                \"repartitions\": [\n                    {\n                        \"user\": 1,\n                        \"weight\": 1\n                    },\n                    {\n                        \"user\": 3,\n                        \"weight\": 1\n                    }\n                ]\n            },\n            {\n                \"id\": 5,\n                \"title\": \"Boucherie\",\n                \"amount\": 25.5,\n                \"operation_date\": \"2024-10-26\",\n                \"initiator\": 2,\n                \"created_at\": \"2024-10-26T09:59:56\",\n                \"repartitions\": [\n                    {\n                        \"user\": 1,\n                        \"weight\": 2\n                    },\n                    {\n                        \"user\": 2,\n                        \"weight\": 1\n                    },\n                    {\n                        \"user\": 3,\n                        \"weight\": 1\n                    }\n                ]\n            },\n            {\n                \"id\": 4,\n                \"title\": \"Aperos\",\n                \"amount\": 31.897456217,\n                \"operation_date\": \"2024-10-13\",\n                \"initiator\": 1,\n                \"created_at\": \"2024-10-13T23:51:20\",\n                \"repartitions\": [\n                    {\n                        \"user\": 1,\n                        \"weight\": 1\n                    },\n                    {\n                        \"user\": 2,\n                        \"weight\": 2\n                    },\n                    {\n                        \"user\": 3,\n                        \"weight\": 3\n                    }\n                ]\n            },\n            {\n                \"id\": 3,\n                \"title\": \"Grosses courses LIDL\",\n                \"amount\": 212.47,\n                \"operation_date\": \"2024-10-13\",\n                \"initiator\": 3,\n                \"created_at\": \"2024-10-13T21:23:49\",\n                \"repartitions\": [\n                    {\n                        \"user\": 1,\n                        \"weight\": 2\n                    },\n                    {\n                        \"user\": 2,\n                        \"weight\": 1\n                    },\n                    {\n                        \"user\": 3,\n                        \"weight\": 1\n                    }\n                ]\n            },\n            {\n                \"id\": 2,\n                \"title\": \"Plein essence\",\n                \"amount\": 75,\n                \"operation_date\": \"2024-10-13\",\n                \"initiator\": 1,\n                \"created_at\": \"2024-10-13T20:10:41\",\n                \"repartitions\": [\n                    {\n                        \"user\": 1,\n                        \"weight\": 1\n                    },\n                    {\n                        \"user\": 2,\n                        \"weight\": 1\n                    }\n                ]\n            },\n            {\n                \"id\": 1,\n                \"title\": \"Colruyt\",\n                \"amount\": 100,\n                \"operation_date\": \"2024-10-13\",\n                \"initiator\": 2,\n                \"created_at\": \"2024-10-13T19:09:18\",\n                \"repartitions\": [\n                    {\n                        \"user\": 1,\n                        \"weight\": 1\n                    },\n                    {\n                        \"user\": 2,\n                        \"weight\": 1\n                    }\n                ]\n            }\n        ]\n    },\n    {\n        \"id\": 2,\n        \"title\": \"Resto badminton\",\n        \"description\": null,\n        \"created_at\": \"2024-10-10T19:25:10\",\n        \"creator\": 1,\n        \"participants\": [\n            {\n                \"id\": 2,\n                \"email\": \"bepenelle@epfc.eu\",\n                \"full_name\": \"Benoît\",\n                \"iban\": null,\n                \"role\": \"basic_user\"\n            },\n            {\n                \"id\": 1,\n                \"email\": \"boverhaegen@epfc.eu\",\n                \"full_name\": \"Boris\",\n                \"iban\": null,\n                \"role\": \"basic_user\"\n            }\n        ],\n        \"operations\": []\n    },\n    {\n        \"id\": 1,\n        \"title\": \"Gers 2022\",\n        \"description\": null,\n        \"created_at\": \"2024-10-10T18:42:24\",\n        \"creator\": 1,\n        \"participants\": [\n            {\n                \"id\": 1,\n                \"email\": \"boverhaegen@epfc.eu\",\n                \"full_name\": \"Boris\",\n                \"iban\": null,\n                \"role\": \"basic_user\"\n            }\n        ],\n        \"operations\": []\n    }\n]"
+        }
+      ]
+    },
+    {
+      "name": "get_user_data",
+      "event": [
+        {
+          "listen": "test",
+          "script": {
+            "exec": [
+              ""
+            ],
+            "type": "text/javascript",
+            "packages": {
+
+            }
+          }
+        }
+      ],
+      "protocolProfileBehavior": {
+        "disableBodyPruning": true
+      },
+      "request": {
+        "method": "GET",
+        "header": [],
+        "body": {
+          "mode": "raw",
+          "raw": "",
+          "options": {
+            "raw": {
+              "language": "json"
+            }
+          }
+        },
+        "url": {
+          "raw": "{{BASE_URL}}/rpc/get_user_data",
+          "host": [
+            "{{BASE_URL}}"
+          ],
+          "path": [
+            "rpc",
+            "get_user_data"
+          ]
+        },
+        "description": "Permet de recuperer les donnees signaletiques et le rôle de l'utilisateur connecte."
+      },
+      "response": [
+        {
+          "name": "OK (ben)",
+          "originalRequest": {
+            "method": "GET",
+            "header": [],
+            "body": {
+              "mode": "raw",
+              "raw": "",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            },
+            "url": {
+              "raw": "{{BASE_URL}}/rpc/get_user_data",
+              "host": [
+                "{{BASE_URL}}"
+              ],
+              "path": [
+                "rpc",
+                "get_user_data"
+              ]
+            }
+          },
+          "status": "OK",
+          "code": 200,
+          "_postman_previewlanguage": "json",
+          "header": [
+            {
+              "key": "Transfer-Encoding",
+              "value": "chunked"
+            },
+            {
+              "key": "Date",
+              "value": "Sat, 15 Feb 2025 11:28:02 GMT"
+            },
+            {
+              "key": "Server",
+              "value": "postgrest/12.0.3 (1afd98a)"
+            },
+            {
+              "key": "Content-Range",
+              "value": "0-0/*"
+            },
+            {
+              "key": "Content-Type",
+              "value": "application/json; charset=utf-8"
+            }
+          ],
+          "cookie": [],
+          "body": "{\n    \"id\": 2,\n    \"email\": \"bepenelle@epfc.eu\",\n    \"full_name\": \"Benoît\",\n    \"iban\": null,\n    \"role\": \"basic_user\"\n}"
+        },
+        {
+          "name": "OK (boris)",
+          "originalRequest": {
+            "method": "GET",
+            "header": [],
+            "body": {
+              "mode": "raw",
+              "raw": "",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            },
+            "url": {
+              "raw": "{{BASE_URL}}/rpc/get_user_data",
+              "host": [
+                "{{BASE_URL}}"
+              ],
+              "path": [
+                "rpc",
+                "get_user_data"
+              ]
+            }
+          },
+          "status": "OK",
+          "code": 200,
+          "_postman_previewlanguage": "json",
+          "header": [
+            {
+              "key": "Transfer-Encoding",
+              "value": "chunked"
+            },
+            {
+              "key": "Date",
+              "value": "Sat, 15 Feb 2025 11:28:57 GMT"
+            },
+            {
+              "key": "Server",
+              "value": "postgrest/12.0.3 (1afd98a)"
+            },
+            {
+              "key": "Content-Range",
+              "value": "0-0/*"
+            },
+            {
+              "key": "Content-Type",
+              "value": "application/json; charset=utf-8"
+            }
+          ],
+          "cookie": [],
+          "body": "{\n    \"id\": 1,\n    \"email\": \"boverhaegen@epfc.eu\",\n    \"full_name\": \"Boris\",\n    \"iban\": null,\n    \"role\": \"basic_user\"\n}"
+        }
+      ]
+    },
+    {
+      "name": "check_email_available",
+      "request": {
+        "auth": {
+          "type": "noauth"
+        },
+        "method": "GET",
+        "header": [],
+        "url": {
+          "raw": "{{BASE_URL}}/rpc/check_email_available?email=\u003Cstring\u003E&user_id=\u003Cinteger\u003E",
+          "host": [
+            "{{BASE_URL}}"
+          ],
+          "path": [
+            "rpc",
+            "check_email_available"
+          ],
+          "query": [
+            {
+              "key": "email",
+              "value": "\u003Cstring\u003E"
+            },
+            {
+              "key": "user_id",
+              "value": "\u003Cinteger\u003E",
+              "description": "- 0 pour un nouvel utilisateur (valeur par defaut)\n- le `user_id` de l'utilisateur pour un changement de mail."
+            }
+          ]
+        },
+        "description": "Permet de verifier si une adresse mail est disponible, sachant qu'il y a une contrainte d'unicite sur ce champ.\n\nCe _endpoint_ peut être appele dans le cadre de :\n\n- la creation d'un nouvel utilisateur\n    \n- la modification du mail d'un utilisateur existant (remarque : à prevoir dans le backend, mais hors scope du frontend)"
+      },
+      "response": [
+        {
+          "name": "nouvel utilisateur (true)",
+          "originalRequest": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "http://localhost:3000/rpc/check_email_available?email=harrycover@epfc.eu",
+              "protocol": "http",
+              "host": [
+                "localhost"
+              ],
+              "port": "3000",
+              "path": [
+                "rpc",
+                "check_email_available"
+              ],
+              "query": [
+                {
+                  "key": "user_id",
+                  "value": "0",
+                  "disabled": true
+                },
+                {
+                  "key": "email",
+                  "value": "harrycover@epfc.eu"
+                }
+              ]
+            }
+          },
+          "status": "OK",
+          "code": 200,
+          "_postman_previewlanguage": "json",
+          "header": [
+            {
+              "key": "Transfer-Encoding",
+              "value": "chunked"
+            },
+            {
+              "key": "Date",
+              "value": "Sat, 15 Feb 2025 10:33:40 GMT"
+            },
+            {
+              "key": "Server",
+              "value": "postgrest/12.0.3 (1afd98a)"
+            },
+            {
+              "key": "Content-Range",
+              "value": "0-0/*"
+            },
+            {
+              "key": "Content-Type",
+              "value": "application/json; charset=utf-8"
+            }
+          ],
+          "cookie": [],
+          "body": "true"
+        },
+        {
+          "name": "nouvel utilisateur (false)",
+          "originalRequest": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "{{BASE_URL}}/rpc/check_email_available?email=bepenelle@epfc.eu",
+              "host": [
+                "{{BASE_URL}}"
+              ],
+              "path": [
+                "rpc",
+                "check_email_available"
+              ],
+              "query": [
+                {
+                  "key": "user_id",
+                  "value": "0",
+                  "description": "(Required) ",
+                  "disabled": true
+                },
+                {
+                  "key": "email",
+                  "value": "bepenelle@epfc.eu"
+                }
+              ]
+            }
+          },
+          "status": "OK",
+          "code": 200,
+          "_postman_previewlanguage": "json",
+          "header": [
+            {
+              "key": "Transfer-Encoding",
+              "value": "chunked"
+            },
+            {
+              "key": "Date",
+              "value": "Sat, 15 Feb 2025 10:33:40 GMT"
+            },
+            {
+              "key": "Server",
+              "value": "postgrest/12.0.3 (1afd98a)"
+            },
+            {
+              "key": "Content-Range",
+              "value": "0-0/*"
+            },
+            {
+              "key": "Content-Type",
+              "value": "application/json; charset=utf-8"
+            }
+          ],
+          "cookie": [],
+          "body": "false"
+        },
+        {
+          "name": "utilisateur existant (true)",
+          "originalRequest": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "{{BASE_URL}}/rpc/check_email_available?email=bepenelle@epfc.eu&user_id=2",
+              "host": [
+                "{{BASE_URL}}"
+              ],
+              "path": [
+                "rpc",
+                "check_email_available"
+              ],
+              "query": [
+                {
+                  "key": "email",
+                  "value": "bepenelle@epfc.eu"
+                },
+                {
+                  "key": "user_id",
+                  "value": "2",
+                  "description": "(Required) "
+                }
+              ]
+            }
+          },
+          "status": "OK",
+          "code": 200,
+          "_postman_previewlanguage": "json",
+          "header": [
+            {
+              "key": "Transfer-Encoding",
+              "value": "chunked"
+            },
+            {
+              "key": "Date",
+              "value": "Sat, 15 Feb 2025 10:34:34 GMT"
+            },
+            {
+              "key": "Server",
+              "value": "postgrest/12.0.3 (1afd98a)"
+            },
+            {
+              "key": "Content-Range",
+              "value": "0-0/*"
+            },
+            {
+              "key": "Content-Type",
+              "value": "application/json; charset=utf-8"
+            }
+          ],
+          "cookie": [],
+          "body": "true"
+        },
+        {
+          "name": "utilisateur existant (false)",
+          "originalRequest": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "{{BASE_URL}}/rpc/check_email_available?email=boverhaegen@epfc.eu&user_id=2",
+              "host": [
+                "{{BASE_URL}}"
+              ],
+              "path": [
+                "rpc",
+                "check_email_available"
+              ],
+              "query": [
+                {
+                  "key": "email",
+                  "value": "boverhaegen@epfc.eu"
+                },
+                {
+                  "key": "user_id",
+                  "value": "2",
+                  "description": "(Required) "
+                }
+              ]
+            }
+          },
+          "status": "OK",
+          "code": 200,
+          "_postman_previewlanguage": "json",
+          "header": [
+            {
+              "key": "Transfer-Encoding",
+              "value": "chunked"
+            },
+            {
+              "key": "Date",
+              "value": "Sat, 15 Feb 2025 10:34:34 GMT"
+            },
+            {
+              "key": "Server",
+              "value": "postgrest/12.0.3 (1afd98a)"
+            },
+            {
+              "key": "Content-Range",
+              "value": "0-0/*"
+            },
+            {
+              "key": "Content-Type",
+              "value": "application/json; charset=utf-8"
+            }
+          ],
+          "cookie": [],
+          "body": "false"
+        }
+      ]
+    },
+    {
+      "name": "check_full_name_available",
+      "request": {
+        "auth": {
+          "type": "noauth"
+        },
+        "method": "GET",
+        "header": [],
+        "url": {
+          "raw": "{{BASE_URL}}/rpc/check_full_name_available?full_name=\u003Cstring\u003E&user_id=\u003Cinteger\u003E",
+          "host": [
+            "{{BASE_URL}}"
+          ],
+          "path": [
+            "rpc",
+            "check_full_name_available"
+          ],
+          "query": [
+            {
+              "key": "full_name",
+              "value": "\u003Cstring\u003E",
+              "description": "(Required) "
+            },
+            {
+              "key": "user_id",
+              "value": "\u003Cinteger\u003E",
+              "description": "- 0 pour un nouvel utilisateur (valeur par defaut)\n- le `user_id` de l'utilisateur pour un changement de nom."
+            }
+          ]
+        },
+        "description": "Permet de verifier si un nom est disponible, sachant qu'il y a une contrainte d'unicite sur ce champ.\n\nCe _endpoint_ peut être appele dans le cadre de :\n\n- la creation d'un nouvel utilisateur\n    \n- la modification du nom d'un utilisateur existant (remarque : à prevoir dans le backend, mais hors scope du frontend)"
+      },
+      "response": [
+        {
+          "name": "nouvel utilisateur (true)",
+          "originalRequest": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "http://localhost:3000/rpc/check_full_name_available?full_name=Harry%20Cover",
+              "protocol": "http",
+              "host": [
+                "localhost"
+              ],
+              "port": "3000",
+              "path": [
+                "rpc",
+                "check_full_name_available"
+              ],
+              "query": [
+                {
+                  "key": "full_name",
+                  "value": "Harry%20Cover",
+                  "description": "(Required) "
+                },
+                {
+                  "key": "user_id",
+                  "value": "0",
+                  "disabled": true
+                }
+              ]
+            }
+          },
+          "status": "OK",
+          "code": 200,
+          "_postman_previewlanguage": "json",
+          "header": [
+            {
+              "key": "Transfer-Encoding",
+              "value": "chunked"
+            },
+            {
+              "key": "Date",
+              "value": "Sat, 15 Feb 2025 10:33:40 GMT"
+            },
+            {
+              "key": "Server",
+              "value": "postgrest/12.0.3 (1afd98a)"
+            },
+            {
+              "key": "Content-Range",
+              "value": "0-0/*"
+            },
+            {
+              "key": "Content-Type",
+              "value": "application/json; charset=utf-8"
+            }
+          ],
+          "cookie": [],
+          "body": "true"
+        },
+        {
+          "name": "nouvel utilisateur (false)",
+          "originalRequest": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "{{BASE_URL}}/rpc/check_full_name_available?full_name=Benoît",
+              "host": [
+                "{{BASE_URL}}"
+              ],
+              "path": [
+                "rpc",
+                "check_full_name_available"
+              ],
+              "query": [
+                {
+                  "key": "full_name",
+                  "value": "Benoît",
+                  "description": "(Required) "
+                },
+                {
+                  "key": "user_id",
+                  "value": "0",
+                  "description": "(Required) ",
+                  "disabled": true
+                }
+              ]
+            }
+          },
+          "status": "OK",
+          "code": 200,
+          "_postman_previewlanguage": "json",
+          "header": [
+            {
+              "key": "Transfer-Encoding",
+              "value": "chunked"
+            },
+            {
+              "key": "Date",
+              "value": "Sat, 15 Feb 2025 10:33:40 GMT"
+            },
+            {
+              "key": "Server",
+              "value": "postgrest/12.0.3 (1afd98a)"
+            },
+            {
+              "key": "Content-Range",
+              "value": "0-0/*"
+            },
+            {
+              "key": "Content-Type",
+              "value": "application/json; charset=utf-8"
+            }
+          ],
+          "cookie": [],
+          "body": "false"
+        },
+        {
+          "name": "utilisateur existant (true)",
+          "originalRequest": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "{{BASE_URL}}/rpc/check_full_name_available?full_name=Benoît&user_id=2",
+              "host": [
+                "{{BASE_URL}}"
+              ],
+              "path": [
+                "rpc",
+                "check_full_name_available"
+              ],
+              "query": [
+                {
+                  "key": "full_name",
+                  "value": "Benoît",
+                  "description": "(Required) "
+                },
+                {
+                  "key": "user_id",
+                  "value": "2",
+                  "description": "(Required) "
+                }
+              ]
+            }
+          },
+          "status": "OK",
+          "code": 200,
+          "_postman_previewlanguage": "json",
+          "header": [
+            {
+              "key": "Transfer-Encoding",
+              "value": "chunked"
+            },
+            {
+              "key": "Date",
+              "value": "Sat, 15 Feb 2025 10:34:34 GMT"
+            },
+            {
+              "key": "Server",
+              "value": "postgrest/12.0.3 (1afd98a)"
+            },
+            {
+              "key": "Content-Range",
+              "value": "0-0/*"
+            },
+            {
+              "key": "Content-Type",
+              "value": "application/json; charset=utf-8"
+            }
+          ],
+          "cookie": [],
+          "body": "true"
+        },
+        {
+          "name": "utilisateur existant (false)",
+          "originalRequest": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "{{BASE_URL}}/rpc/check_full_name_available?full_name=Boris&user_id=2",
+              "host": [
+                "{{BASE_URL}}"
+              ],
+              "path": [
+                "rpc",
+                "check_full_name_available"
+              ],
+              "query": [
+                {
+                  "key": "full_name",
+                  "value": "Boris",
+                  "description": "(Required) "
+                },
+                {
+                  "key": "user_id",
+                  "value": "2",
+                  "description": "(Required) "
+                }
+              ]
+            }
+          },
+          "status": "OK",
+          "code": 200,
+          "_postman_previewlanguage": "json",
+          "header": [
+            {
+              "key": "Transfer-Encoding",
+              "value": "chunked"
+            },
+            {
+              "key": "Date",
+              "value": "Sat, 15 Feb 2025 10:34:34 GMT"
+            },
+            {
+              "key": "Server",
+              "value": "postgrest/12.0.3 (1afd98a)"
+            },
+            {
+              "key": "Content-Range",
+              "value": "0-0/*"
+            },
+            {
+              "key": "Content-Type",
+              "value": "application/json; charset=utf-8"
+            }
+          ],
+          "cookie": [],
+          "body": "false"
+        }
+      ]
+    },
+    {
+      "name": "get_all_users",
+      "request": {
+        "method": "GET",
+        "header": [],
+        "url": {
+          "raw": "{{BASE_URL}}/rpc/get_all_users",
+          "host": [
+            "{{BASE_URL}}"
+          ],
+          "path": [
+            "rpc",
+            "get_all_users"
+          ]
+        },
+        "description": "Recupère la liste de tous les utilisateurs du système, tries par ordre alphabetique de leur nom."
+      },
+      "response": [
+        {
+          "name": "OK",
+          "originalRequest": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "http://localhost:3000/rpc/get_all_users",
+              "protocol": "http",
+              "host": [
+                "localhost"
+              ],
+              "port": "3000",
+              "path": [
+                "rpc",
+                "get_all_users"
+              ]
+            }
+          },
+          "status": "OK",
+          "code": 200,
+          "_postman_previewlanguage": "json",
+          "header": [
+            {
+              "key": "Transfer-Encoding",
+              "value": "chunked"
+            },
+            {
+              "key": "Date",
+              "value": "Sat, 15 Feb 2025 14:00:59 GMT"
+            },
+            {
+              "key": "Server",
+              "value": "postgrest/12.0.3 (1afd98a)"
+            },
+            {
+              "key": "Content-Range",
+              "value": "0-0/*"
+            },
+            {
+              "key": "Content-Type",
+              "value": "application/json; charset=utf-8"
+            }
+          ],
+          "cookie": [],
+          "body": "[\n    {\n        \"id\": 9,\n        \"email\": \"admin@epfc.eu\",\n        \"full_name\": \"Admin\",\n        \"iban\": null,\n        \"role\": \"admin\"\n    },\n    {\n        \"id\": 2,\n        \"email\": \"bepenelle@epfc.eu\",\n        \"full_name\": \"Benoît\",\n        \"iban\": null,\n        \"role\": \"basic_user\"\n    },\n    {\n        \"id\": 1,\n        \"email\": \"boverhaegen@epfc.eu\",\n        \"full_name\": \"Boris\",\n        \"iban\": null,\n        \"role\": \"basic_user\"\n    },\n    {\n        \"id\": 5,\n        \"email\": \"gedielman@epfc.eu\",\n        \"full_name\": \"Geoffrey\",\n        \"iban\": \"BE12 1234 1234 1234\",\n        \"role\": \"basic_user\"\n    },\n    {\n        \"id\": 4,\n        \"email\": \"mamichel@epfc.eu\",\n        \"full_name\": \"Marc\",\n        \"iban\": \"BE45 4567 4567 4567\",\n        \"role\": \"basic_user\"\n    },\n    {\n        \"id\": 3,\n        \"email\": \"xapigeolet@epfc.eu\",\n        \"full_name\": \"Xavier\",\n        \"iban\": null,\n        \"role\": \"basic_user\"\n    }\n]"
+        }
+      ]
+    },
+    {
+      "name": "check_tricount_title_available",
+      "request": {
+        "method": "GET",
+        "header": [],
+        "url": {
+          "raw": "{{BASE_URL}}/rpc/check_tricount_title_available?title=\u003Cstring\u003E&tricount_id=\u003Cinteger\u003E",
+          "host": [
+            "{{BASE_URL}}"
+          ],
+          "path": [
+            "rpc",
+            "check_tricount_title_available"
+          ],
+          "query": [
+            {
+              "key": "title",
+              "value": "\u003Cstring\u003E",
+              "description": "(Required)"
+            },
+            {
+              "key": "tricount_id",
+              "value": "\u003Cinteger\u003E",
+              "description": "- 0 pour un nouveau tricount\n- `tricount_id` du tricount dont on veut modifier le titre"
+            }
+          ]
+        },
+        "description": "Permet de verifier si un titre de tricount est disponible pour l'utilisateur connecte, sachant qu'il y a une contrainte d'unicite sur ce champ, par utilisateur.\n\nCe _endpoint_ peut être appele dans le cadre de :\n\n- la creation d'un nouveau tricount\n    \n- la modification du titre d'un tricount existant"
+      },
+      "response": [
+        {
+          "name": "nouveau (boris, false)",
+          "originalRequest": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "{{BASE_URL}}/rpc/check_tricount_title_available?title=vacances&tricount_id=0",
+              "host": [
+                "{{BASE_URL}}"
+              ],
+              "path": [
+                "rpc",
+                "check_tricount_title_available"
+              ],
+              "query": [
+                {
+                  "key": "title",
+                  "value": "vacances"
+                },
+                {
+                  "key": "tricount_id",
+                  "value": "0"
+                }
+              ]
+            }
+          },
+          "status": "OK",
+          "code": 200,
+          "_postman_previewlanguage": "json",
+          "header": [
+            {
+              "key": "Transfer-Encoding",
+              "value": "chunked"
+            },
+            {
+              "key": "Date",
+              "value": "Sat, 15 Feb 2025 14:24:01 GMT"
+            },
+            {
+              "key": "Server",
+              "value": "postgrest/12.0.3 (1afd98a)"
+            },
+            {
+              "key": "Content-Range",
+              "value": "0-0/*"
+            },
+            {
+              "key": "Content-Type",
+              "value": "application/json; charset=utf-8"
+            }
+          ],
+          "cookie": [],
+          "body": "false"
+        },
+        {
+          "name": "nouveau (boris, true)",
+          "originalRequest": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "{{BASE_URL}}/rpc/check_tricount_title_available?title=xxx&tricount_id=0",
+              "host": [
+                "{{BASE_URL}}"
+              ],
+              "path": [
+                "rpc",
+                "check_tricount_title_available"
+              ],
+              "query": [
+                {
+                  "key": "title",
+                  "value": "xxx"
+                },
+                {
+                  "key": "tricount_id",
+                  "value": "0"
+                }
+              ]
+            }
+          },
+          "status": "OK",
+          "code": 200,
+          "_postman_previewlanguage": "json",
+          "header": [
+            {
+              "key": "Transfer-Encoding",
+              "value": "chunked"
+            },
+            {
+              "key": "Date",
+              "value": "Sat, 15 Feb 2025 14:26:14 GMT"
+            },
+            {
+              "key": "Server",
+              "value": "postgrest/12.0.3 (1afd98a)"
+            },
+            {
+              "key": "Content-Range",
+              "value": "0-0/*"
+            },
+            {
+              "key": "Content-Type",
+              "value": "application/json; charset=utf-8"
+            }
+          ],
+          "cookie": [],
+          "body": "true"
+        },
+        {
+          "name": "existant (boris, false)",
+          "originalRequest": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "{{BASE_URL}}/rpc/check_tricount_title_available?title=Gers%202022&tricount_id=4",
+              "host": [
+                "{{BASE_URL}}"
+              ],
+              "path": [
+                "rpc",
+                "check_tricount_title_available"
+              ],
+              "query": [
+                {
+                  "key": "title",
+                  "value": "Gers%202022"
+                },
+                {
+                  "key": "tricount_id",
+                  "value": "4"
+                }
+              ]
+            }
+          },
+          "status": "OK",
+          "code": 200,
+          "_postman_previewlanguage": "json",
+          "header": [
+            {
+              "key": "Transfer-Encoding",
+              "value": "chunked"
+            },
+            {
+              "key": "Date",
+              "value": "Sat, 15 Feb 2025 14:29:15 GMT"
+            },
+            {
+              "key": "Server",
+              "value": "postgrest/12.0.3 (1afd98a)"
+            },
+            {
+              "key": "Content-Range",
+              "value": "0-0/*"
+            },
+            {
+              "key": "Content-Type",
+              "value": "application/json; charset=utf-8"
+            }
+          ],
+          "cookie": [],
+          "body": "false"
+        },
+        {
+          "name": "existant (boris, true)",
+          "originalRequest": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "{{BASE_URL}}/rpc/check_tricount_title_available?title=vacances&tricount_id=4",
+              "host": [
+                "{{BASE_URL}}"
+              ],
+              "path": [
+                "rpc",
+                "check_tricount_title_available"
+              ],
+              "query": [
+                {
+                  "key": "title",
+                  "value": "vacances"
+                },
+                {
+                  "key": "tricount_id",
+                  "value": "4"
+                }
+              ]
+            }
+          },
+          "status": "OK",
+          "code": 200,
+          "_postman_previewlanguage": "json",
+          "header": [
+            {
+              "key": "Transfer-Encoding",
+              "value": "chunked"
+            },
+            {
+              "key": "Date",
+              "value": "Sat, 15 Feb 2025 14:27:11 GMT"
+            },
+            {
+              "key": "Server",
+              "value": "postgrest/12.0.3 (1afd98a)"
+            },
+            {
+              "key": "Content-Range",
+              "value": "0-0/*"
+            },
+            {
+              "key": "Content-Type",
+              "value": "application/json; charset=utf-8"
+            }
+          ],
+          "cookie": [],
+          "body": "true"
+        }
+      ]
+    },
+    {
+      "name": "save_tricount",
+      "request": {
+        "method": "POST",
+        "header": [],
+        "body": {
+          "mode": "raw",
+          "raw": "{\n    \"id\": \u003Cinteger\u003E, // requis, 0 si creation\n    \"title\": \"\u003Cstring\u003E\", // requis\n    \"description\": \"\u003Cstring\u003E\", // optionnel, null par defaut\n    \"participants\": \u003Cinteger[]\u003E // optionnel, null par defaut\n}\n",
+          "options": {
+            "raw": {
+              "headerFamily": "json",
+              "language": "json"
+            }
+          }
+        },
+        "url": {
+          "raw": "{{BASE_URL}}/rpc/save_tricount",
+          "host": [
+            "{{BASE_URL}}"
+          ],
+          "path": [
+            "rpc",
+            "save_tricount"
+          ]
+        },
+        "description": "Permet de creer (`id=0`) ou de modifier (`id\u003E0`) un tricount (titre, description et participants).\n\nDans le cas d'une creation, l'utilisateur connecte est automatiquement ajoute comme participant, même s'il n'est pas repris dans le paramètre `participants`.\n\nDans le cas d'une mise à jour, on supprime les participants existants qui ne sont pas repris dans le paramètre `participants` (moyennant verification qu'ils ne sont pas impliques dans des operations), sauf le createur du tricount."
+      },
+      "response": [
+        {
+          "name": "OK (create)",
+          "originalRequest": {
+            "method": "POST",
+            "header": [],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n    \"id\": 0, // requis, 0 si creation\n    \"title\": \"Test\", // requis\n    \"description\": null, // optionnel, null par defaut\n    \"participants\": [5] // optionnel, null par defaut\n}\n",
+              "options": {
+                "raw": {
+                  "headerFamily": "json",
+                  "language": "json"
+                }
+              }
+            },
+            "url": {
+              "raw": "{{BASE_URL}}/rpc/save_tricount",
+              "host": [
+                "{{BASE_URL}}"
+              ],
+              "path": [
+                "rpc",
+                "save_tricount"
+              ]
+            }
+          },
+          "status": "OK",
+          "code": 200,
+          "_postman_previewlanguage": "json",
+          "header": [
+            {
+              "key": "Transfer-Encoding",
+              "value": "chunked"
+            },
+            {
+              "key": "Date",
+              "value": "Sat, 15 Feb 2025 22:14:03 GMT"
+            },
+            {
+              "key": "Server",
+              "value": "postgrest/12.0.3 (1afd98a)"
+            },
+            {
+              "key": "Content-Range",
+              "value": "0-0/*"
+            },
+            {
+              "key": "Content-Type",
+              "value": "application/json; charset=utf-8"
+            }
+          ],
+          "cookie": [],
+          "body": "{\n    \"id\": 5,\n    \"title\": \"Test\",\n    \"description\": null,\n    \"created_at\": \"2025-02-15T23:14:03.27331\",\n    \"creator\": 1,\n    \"participants\": [\n        {\n            \"id\": 1,\n            \"email\": \"boverhaegen@epfc.eu\",\n            \"full_name\": \"Boris\",\n            \"iban\": null,\n            \"role\": \"basic_user\"\n        },\n        {\n            \"id\": 5,\n            \"email\": \"gedielman@epfc.eu\",\n            \"full_name\": \"Geoffrey\",\n            \"iban\": \"5678\",\n            \"role\": \"basic_user\"\n        }\n    ],\n    \"operations\": []\n}"
+        },
+        {
+          "name": "OK (update)",
+          "originalRequest": {
+            "method": "POST",
+            "header": [],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n    \"id\": 4, // requis, 0 si creation\n    \"title\": \"Vacances (updated)\", // requis\n    \"description\": \"A la mer du nord (updated)\", // optionnel, null par defaut\n    \"participants\": [1,2,3,4,5] // optionnel, null par defaut\n}\n",
+              "options": {
+                "raw": {
+                  "headerFamily": "json",
+                  "language": "json"
+                }
+              }
+            },
+            "url": {
+              "raw": "{{BASE_URL}}/rpc/save_tricount",
+              "host": [
+                "{{BASE_URL}}"
+              ],
+              "path": [
+                "rpc",
+                "save_tricount"
+              ]
+            }
+          },
+          "status": "OK",
+          "code": 200,
+          "_postman_previewlanguage": "json",
+          "header": [
+            {
+              "key": "Transfer-Encoding",
+              "value": "chunked"
+            },
+            {
+              "key": "Date",
+              "value": "Sat, 15 Feb 2025 22:10:31 GMT"
+            },
+            {
+              "key": "Server",
+              "value": "postgrest/12.0.3 (1afd98a)"
+            },
+            {
+              "key": "Content-Range",
+              "value": "0-0/*"
+            },
+            {
+              "key": "Content-Type",
+              "value": "application/json; charset=utf-8"
+            }
+          ],
+          "cookie": [],
+          "body": "{\n    \"id\": 4,\n    \"title\": \"Vacances (updated)\",\n    \"description\": \"A la mer du nord (updated)\",\n    \"created_at\": \"2024-10-10T19:31:09\",\n    \"creator\": 1,\n    \"participants\": [\n        {\n            \"id\": 2,\n            \"email\": \"bepenelle@epfc.eu\",\n            \"full_name\": \"Benoît\",\n            \"iban\": null,\n            \"role\": \"basic_user\"\n        },\n        {\n            \"id\": 1,\n            \"email\": \"boverhaegen@epfc.eu\",\n            \"full_name\": \"Boris\",\n            \"iban\": null,\n            \"role\": \"basic_user\"\n        },\n        {\n            \"id\": 5,\n            \"email\": \"gedielman@epfc.eu\",\n            \"full_name\": \"Geoffrey\",\n            \"iban\": \"5678\",\n            \"role\": \"basic_user\"\n        },\n        {\n            \"id\": 4,\n            \"email\": \"mamichel@epfc.eu\",\n            \"full_name\": \"Marc\",\n            \"iban\": \"1234\",\n            \"role\": \"basic_user\"\n        },\n        {\n            \"id\": 3,\n            \"email\": \"xapigeolet@epfc.eu\",\n            \"full_name\": \"Xavier\",\n            \"iban\": null,\n            \"role\": \"basic_user\"\n        }\n    ],\n    \"operations\": [\n        {\n            \"id\": 6,\n            \"title\": \"Loterie\",\n            \"amount\": 35,\n            \"operation_date\": \"2024-10-26\",\n            \"initiator\": 1,\n            \"created_at\": \"2024-10-26T10:02:24\",\n            \"repartitions\": [\n                {\n                    \"user\": 1,\n                    \"weight\": 1\n                },\n                {\n                    \"user\": 3,\n                    \"weight\": 1\n                }\n            ]\n        },\n        {\n            \"id\": 5,\n            \"title\": \"Boucherie\",\n            \"amount\": 25.5,\n            \"operation_date\": \"2024-10-26\",\n            \"initiator\": 2,\n            \"created_at\": \"2024-10-26T09:59:56\",\n            \"repartitions\": [\n                {\n                    \"user\": 1,\n                    \"weight\": 2\n                },\n                {\n                    \"user\": 2,\n                    \"weight\": 1\n                },\n                {\n                    \"user\": 3,\n                    \"weight\": 1\n                }\n            ]\n        },\n        {\n            \"id\": 4,\n            \"title\": \"Aperos\",\n            \"amount\": 31.897456217,\n            \"operation_date\": \"2024-10-13\",\n            \"initiator\": 1,\n            \"created_at\": \"2024-10-13T23:51:20\",\n            \"repartitions\": [\n                {\n                    \"user\": 1,\n                    \"weight\": 1\n                },\n                {\n                    \"user\": 2,\n                    \"weight\": 2\n                },\n                {\n                    \"user\": 3,\n                    \"weight\": 3\n                }\n            ]\n        },\n        {\n            \"id\": 3,\n            \"title\": \"Grosses courses LIDL\",\n            \"amount\": 212.47,\n            \"operation_date\": \"2024-10-13\",\n            \"initiator\": 3,\n            \"created_at\": \"2024-10-13T21:23:49\",\n            \"repartitions\": [\n                {\n                    \"user\": 1,\n                    \"weight\": 2\n                },\n                {\n                    \"user\": 2,\n                    \"weight\": 1\n                },\n                {\n                    \"user\": 3,\n                    \"weight\": 1\n                }\n            ]\n        },\n        {\n            \"id\": 2,\n            \"title\": \"Plein essence\",\n            \"amount\": 75,\n            \"operation_date\": \"2024-10-13\",\n            \"initiator\": 1,\n            \"created_at\": \"2024-10-13T20:10:41\",\n            \"repartitions\": [\n                {\n                    \"user\": 1,\n                    \"weight\": 1\n                },\n                {\n                    \"user\": 2,\n                    \"weight\": 1\n                }\n            ]\n        },\n        {\n            \"id\": 1,\n            \"title\": \"Colruyt\",\n            \"amount\": 100,\n            \"operation_date\": \"2024-10-13\",\n            \"initiator\": 2,\n            \"created_at\": \"2024-10-13T19:09:18\",\n            \"repartitions\": [\n                {\n                    \"user\": 1,\n                    \"weight\": 1\n                },\n                {\n                    \"user\": 2,\n                    \"weight\": 1\n                }\n            ]\n        }\n    ]\n}"
+        },
+        {
+          "name": "KO (update)",
+          "originalRequest": {
+            "method": "POST",
+            "header": [],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n    \"id\": 4, // requis, 0 si creation\n    \"title\": \"Vacances (updated)\", // requis\n    \"description\": \"A la mer du nord (updated)\", // optionnel, null par defaut\n    \"participants\": [] // optionnel, null par defaut\n}\n",
+              "options": {
+                "raw": {
+                  "headerFamily": "json",
+                  "language": "json"
+                }
+              }
+            },
+            "url": {
+              "raw": "{{BASE_URL}}/rpc/save_tricount",
+              "host": [
+                "{{BASE_URL}}"
+              ],
+              "path": [
+                "rpc",
+                "save_tricount"
+              ]
+            }
+          },
+          "status": "Bad Request",
+          "code": 400,
+          "_postman_previewlanguage": "json",
+          "header": [
+            {
+              "key": "Transfer-Encoding",
+              "value": "chunked"
+            },
+            {
+              "key": "Date",
+              "value": "Sat, 15 Feb 2025 22:16:05 GMT"
+            },
+            {
+              "key": "Server",
+              "value": "postgrest/12.0.3 (1afd98a)"
+            },
+            {
+              "key": "Content-Type",
+              "value": "application/json; charset=utf-8"
+            }
+          ],
+          "cookie": [],
+          "body": "{\n    \"code\": \"P0001\",\n    \"details\": null,\n    \"hint\": null,\n    \"message\": \"You cannot remove the participation of the owner of a tricount\"\n}"
+        }
+      ]
+    },
+    {
+      "name": "delete_tricount",
+      "request": {
+        "method": "POST",
+        "header": [],
+        "body": {
+          "mode": "raw",
+          "raw": "{\n  \"tricount_id\": \u003Cinteger\u003E  // requis\n}",
+          "options": {
+            "raw": {
+              "headerFamily": "json",
+              "language": "json"
+            }
+          }
+        },
+        "url": {
+          "raw": "{{BASE_URL}}/rpc/delete_tricount",
+          "host": [
+            "{{BASE_URL}}"
+          ],
+          "path": [
+            "rpc",
+            "delete_tricount"
+          ]
+        },
+        "description": "Permet de supprimer un tricount et les donnees dependantes."
+      },
+      "response": [
+        {
+          "name": "OK",
+          "originalRequest": {
+            "method": "POST",
+            "header": [],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"tricount_id\": 4  // requis\n}",
+              "options": {
+                "raw": {
+                  "headerFamily": "json",
+                  "language": "json"
+                }
+              }
+            },
+            "url": {
+              "raw": "{{BASE_URL}}/rpc/delete_tricount",
+              "host": [
+                "{{BASE_URL}}"
+              ],
+              "path": [
+                "rpc",
+                "delete_tricount"
+              ]
+            }
+          },
+          "status": "No Content",
+          "code": 204,
+          "_postman_previewlanguage": "plain",
+          "header": [
+            {
+              "key": "Date",
+              "value": "Sat, 15 Feb 2025 22:39:20 GMT"
+            },
+            {
+              "key": "Server",
+              "value": "postgrest/12.0.3 (1afd98a)"
+            },
+            {
+              "key": "Content-Range",
+              "value": "0-0/*"
+            }
+          ],
+          "cookie": [],
+          "body": null
+        },
+        {
+          "name": "not found",
+          "originalRequest": {
+            "method": "POST",
+            "header": [],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"tricount_id\": 0  // requis\n}",
+              "options": {
+                "raw": {
+                  "headerFamily": "json",
+                  "language": "json"
+                }
+              }
+            },
+            "url": {
+              "raw": "{{BASE_URL}}/rpc/delete_tricount",
+              "host": [
+                "{{BASE_URL}}"
+              ],
+              "path": [
+                "rpc",
+                "delete_tricount"
+              ]
+            }
+          },
+          "status": "Bad Request",
+          "code": 400,
+          "_postman_previewlanguage": "json",
+          "header": [
+            {
+              "key": "Transfer-Encoding",
+              "value": "chunked"
+            },
+            {
+              "key": "Date",
+              "value": "Sat, 15 Feb 2025 22:39:56 GMT"
+            },
+            {
+              "key": "Server",
+              "value": "postgrest/12.0.3 (1afd98a)"
+            },
+            {
+              "key": "Content-Type",
+              "value": "application/json; charset=utf-8"
+            }
+          ],
+          "cookie": [],
+          "body": "{\n    \"code\": \"P0001\",\n    \"details\": null,\n    \"hint\": null,\n    \"message\": \"tricount not found\"\n}"
+        },
+        {
+          "name": "access denied",
+          "originalRequest": {
+            "method": "POST",
+            "header": [],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"tricount_id\": 4  // requis\n}",
+              "options": {
+                "raw": {
+                  "headerFamily": "json",
+                  "language": "json"
+                }
+              }
+            },
+            "url": {
+              "raw": "{{BASE_URL}}/rpc/delete_tricount",
+              "host": [
+                "{{BASE_URL}}"
+              ],
+              "path": [
+                "rpc",
+                "delete_tricount"
+              ]
+            }
+          },
+          "status": "Bad Request",
+          "code": 400,
+          "_postman_previewlanguage": "json",
+          "header": [
+            {
+              "key": "Transfer-Encoding",
+              "value": "chunked"
+            },
+            {
+              "key": "Date",
+              "value": "Sat, 15 Feb 2025 22:40:35 GMT"
+            },
+            {
+              "key": "Server",
+              "value": "postgrest/12.0.3 (1afd98a)"
+            },
+            {
+              "key": "Content-Type",
+              "value": "application/json; charset=utf-8"
+            }
+          ],
+          "cookie": [],
+          "body": "{\n    \"code\": \"P0001\",\n    \"details\": null,\n    \"hint\": null,\n    \"message\": \"access denied\"\n}"
+        }
+      ]
+    },
+    {
+      "name": "save_operation",
+      "request": {
+        "method": "POST",
+        "header": [],
+        "body": {
+          "mode": "raw",
+          "raw": "{\n  \"id\": \u003Cinteger\u003E,  // 0 pour une creation\n  \"tricount_id\": \u003Cinteger\u003E,  // requis pour une creation, ignore pour une modification\n  \"title\": \"\u003Cstring\u003E\",  // requis\n  \"amount\": \u003Cnumber\u003E,  // requis\n  \"operation_date\": \"\u003Cdate\u003E\",   // optionnel, null par defaut\n  \"initiator\": \u003Cinteger\u003E,  // requis\n  \"repartitions\": []  // requis et non vide\n}",
+          "options": {
+            "raw": {
+              "headerFamily": "json",
+              "language": "json"
+            }
+          }
+        },
+        "url": {
+          "raw": "{{BASE_URL}}/rpc/save_operation",
+          "host": [
+            "{{BASE_URL}}"
+          ],
+          "path": [
+            "rpc",
+            "save_operation"
+          ]
+        },
+        "description": "Permet de creer (`id=0`) ou de modifier (`id\u003E0`) une operation (titre, montant, date, initiateur et repartitions).\n\nDans le cas d'une mise à jour, on supprime les repartitions existantes qui ne sont pas reprises dans le paramètre `repartitions`."
+      },
+      "response": [
+        {
+          "name": "OK (create)",
+          "originalRequest": {
+            "method": "POST",
+            "header": [],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n    \"id\": 0,\n    \"title\": \"Operation de test\",\n    \"amount\": 100,\n    \"operation_date\": \"2025-02-15\",\n    \"tricount_id\": 4,\n    \"initiator\": 1,\n    \"repartitions\": [\n        { \"user\": 1, \"weight\": 1 },\n        { \"user\": 2, \"weight\": 3 },\n        { \"user\": 3, \"weight\": 2 }\n    ]\n}",
+              "options": {
+                "raw": {
+                  "headerFamily": "json",
+                  "language": "json"
+                }
+              }
+            },
+            "url": {
+              "raw": "{{BASE_URL}}/rpc/save_operation",
+              "host": [
+                "{{BASE_URL}}"
+              ],
+              "path": [
+                "rpc",
+                "save_operation"
+              ]
+            }
+          },
+          "status": "OK",
+          "code": 200,
+          "_postman_previewlanguage": "json",
+          "header": [
+            {
+              "key": "Transfer-Encoding",
+              "value": "chunked"
+            },
+            {
+              "key": "Date",
+              "value": "Sat, 15 Feb 2025 22:49:57 GMT"
+            },
+            {
+              "key": "Server",
+              "value": "postgrest/12.0.3 (1afd98a)"
+            },
+            {
+              "key": "Content-Range",
+              "value": "0-0/*"
+            },
+            {
+              "key": "Content-Type",
+              "value": "application/json; charset=utf-8"
+            }
+          ],
+          "cookie": [],
+          "body": "{\n    \"id\": 7,\n    \"title\": \"Operation de test\",\n    \"amount\": 100,\n    \"operation_date\": \"2025-02-15\",\n    \"initiator\": 1,\n    \"created_at\": \"2025-02-15T23:49:57.45298\",\n    \"repartitions\": [\n        {\n            \"user\": 1,\n            \"weight\": 1\n        },\n        {\n            \"user\": 2,\n            \"weight\": 3\n        },\n        {\n            \"user\": 3,\n            \"weight\": 2\n        }\n    ]\n}"
+        },
+        {
+          "name": "OK (updated)",
+          "originalRequest": {
+            "method": "POST",
+            "header": [],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n    \"id\": 7,\n    \"title\": \"Operation de test (updated)\",\n    \"amount\": 100,\n    \"operation_date\": \"2025-02-15\",\n    \"tricount_id\": 4,\n    \"initiator\": 1,\n    \"repartitions\": [\n        { \"user\": 1, \"weight\": 2 },\n        { \"user\": 3, \"weight\": 1 }\n    ]\n}",
+              "options": {
+                "raw": {
+                  "headerFamily": "json",
+                  "language": "json"
+                }
+              }
+            },
+            "url": {
+              "raw": "{{BASE_URL}}/rpc/save_operation",
+              "host": [
+                "{{BASE_URL}}"
+              ],
+              "path": [
+                "rpc",
+                "save_operation"
+              ]
+            }
+          },
+          "status": "OK",
+          "code": 200,
+          "_postman_previewlanguage": "json",
+          "header": [
+            {
+              "key": "Transfer-Encoding",
+              "value": "chunked"
+            },
+            {
+              "key": "Date",
+              "value": "Sat, 15 Feb 2025 22:54:09 GMT"
+            },
+            {
+              "key": "Server",
+              "value": "postgrest/12.0.3 (1afd98a)"
+            },
+            {
+              "key": "Content-Range",
+              "value": "0-0/*"
+            },
+            {
+              "key": "Content-Type",
+              "value": "application/json; charset=utf-8"
+            }
+          ],
+          "cookie": [],
+          "body": "{\n    \"id\": 7,\n    \"title\": \"Operation de test (updated)\",\n    \"amount\": 100,\n    \"operation_date\": \"2025-02-15\",\n    \"initiator\": 1,\n    \"created_at\": \"2025-02-15T23:49:57.45298\",\n    \"repartitions\": [\n        {\n            \"user\": 1,\n            \"weight\": 2\n        },\n        {\n            \"user\": 3,\n            \"weight\": 1\n        }\n    ]\n}"
+        },
+        {
+          "name": "missing repartitions",
+          "originalRequest": {
+            "method": "POST",
+            "header": [],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n    \"id\": 0,\n    \"title\": \"Operation de test\",\n    \"amount\": 100,\n    \"operation_date\": \"2025-02-15\",\n    \"tricount_id\": 4,\n    \"initiator\": 1,\n    \"repartitions\": []\n}",
+              "options": {
+                "raw": {
+                  "headerFamily": "json",
+                  "language": "json"
+                }
+              }
+            },
+            "url": {
+              "raw": "{{BASE_URL}}/rpc/save_operation",
+              "host": [
+                "{{BASE_URL}}"
+              ],
+              "path": [
+                "rpc",
+                "save_operation"
+              ]
+            }
+          },
+          "status": "Bad Request",
+          "code": 400,
+          "_postman_previewlanguage": "json",
+          "header": [
+            {
+              "key": "Transfer-Encoding",
+              "value": "chunked"
+            },
+            {
+              "key": "Date",
+              "value": "Sat, 15 Feb 2025 23:10:38 GMT"
+            },
+            {
+              "key": "Server",
+              "value": "postgrest/12.0.3 (1afd98a)"
+            },
+            {
+              "key": "Content-Type",
+              "value": "application/json; charset=utf-8"
+            }
+          ],
+          "cookie": [],
+          "body": "{\n    \"code\": \"P0001\",\n    \"details\": null,\n    \"hint\": null,\n    \"message\": \"An operation must have at least one repartition\"\n}"
+        }
+      ]
+    },
+    {
+      "name": "delete_operation",
+      "request": {
+        "method": "POST",
+        "header": [],
+        "body": {
+          "mode": "raw",
+          "raw": "{\n  \"id\": \u003Cinteger\u003E  // requis\n}",
+          "options": {
+            "raw": {
+              "headerFamily": "json",
+              "language": "json"
+            }
+          }
+        },
+        "url": {
+          "raw": "{{BASE_URL}}/rpc/delete_operation",
+          "host": [
+            "{{BASE_URL}}"
+          ],
+          "path": [
+            "rpc",
+            "delete_operation"
+          ]
+        },
+        "description": "Permet de supprimer une operation et les donnees dependantes."
+      },
+      "response": [
+        {
+          "name": "OK",
+          "originalRequest": {
+            "method": "POST",
+            "header": [],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"id\": 1  // requis\n}",
+              "options": {
+                "raw": {
+                  "headerFamily": "json",
+                  "language": "json"
+                }
+              }
+            },
+            "url": {
+              "raw": "{{BASE_URL}}/rpc/delete_operation",
+              "host": [
+                "{{BASE_URL}}"
+              ],
+              "path": [
+                "rpc",
+                "delete_operation"
+              ]
+            }
+          },
+          "status": "No Content",
+          "code": 204,
+          "_postman_previewlanguage": "plain",
+          "header": [
+            {
+              "key": "Date",
+              "value": "Sat, 15 Feb 2025 23:15:30 GMT"
+            },
+            {
+              "key": "Server",
+              "value": "postgrest/12.0.3 (1afd98a)"
+            },
+            {
+              "key": "Content-Range",
+              "value": "0-0/*"
+            }
+          ],
+          "cookie": [],
+          "body": null
+        },
+        {
+          "name": "not found",
+          "originalRequest": {
+            "method": "POST",
+            "header": [],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"id\": 99  // requis\n}",
+              "options": {
+                "raw": {
+                  "headerFamily": "json",
+                  "language": "json"
+                }
+              }
+            },
+            "url": {
+              "raw": "{{BASE_URL}}/rpc/delete_operation",
+              "host": [
+                "{{BASE_URL}}"
+              ],
+              "path": [
+                "rpc",
+                "delete_operation"
+              ]
+            }
+          },
+          "status": "Bad Request",
+          "code": 400,
+          "_postman_previewlanguage": "json",
+          "header": [
+            {
+              "key": "Transfer-Encoding",
+              "value": "chunked"
+            },
+            {
+              "key": "Date",
+              "value": "Sat, 15 Feb 2025 23:16:14 GMT"
+            },
+            {
+              "key": "Server",
+              "value": "postgrest/12.0.3 (1afd98a)"
+            },
+            {
+              "key": "Content-Type",
+              "value": "application/json; charset=utf-8"
+            }
+          ],
+          "cookie": [],
+          "body": "{\n    \"code\": \"P0001\",\n    \"details\": null,\n    \"hint\": null,\n    \"message\": \"operation not found\"\n}"
+        }
+      ]
+    },
+    {
+      "name": "get_tricount_balance",
+      "request": {
+        "method": "GET",
+        "header": [],
+        "url": {
+          "raw": "{{BASE_URL}}/rpc/get_tricount_balance?tricount_id=\u003Cinteger\u003E",
+          "host": [
+            "{{BASE_URL}}"
+          ],
+          "path": [
+            "rpc",
+            "get_tricount_balance"
+          ],
+          "query": [
+            {
+              "key": "tricount_id",
+              "value": "\u003Cinteger\u003E",
+              "description": "`tricount_id` du tricount dont on veut recuperer la balance"
+            }
+          ]
+        },
+        "description": "Permet de recuperer les donnees de balance d'un tricount.\n\nOn reçoit en retour les donnees suivantes pour chaque participant du tricount :\n\n- `user` : l'identifiant du participant\n    \n- `paid` : le total des montants payes par le participant\n    \n- `due` : le montant total dû par le participant sans tenir compte de ce qu'il a paye\n    \n- `balance` : la difference `paid - due`"
+      },
+      "response": [
+        {
+          "name": "OK",
+          "originalRequest": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "{{BASE_URL}}/rpc/get_tricount_balance?tricount_id=4",
+              "host": [
+                "{{BASE_URL}}"
+              ],
+              "path": [
+                "rpc",
+                "get_tricount_balance"
+              ],
+              "query": [
+                {
+                  "key": "tricount_id",
+                  "value": "4",
+                  "description": "- 0 pour un nouveau tricount\n- `tricount_id` du tricount dont on veut modifier le titre"
+                }
+              ]
+            }
+          },
+          "status": "OK",
+          "code": 200,
+          "_postman_previewlanguage": "json",
+          "header": [
+            {
+              "key": "Transfer-Encoding",
+              "value": "chunked"
+            },
+            {
+              "key": "Date",
+              "value": "Mon, 10 Mar 2025 22:05:12 GMT"
+            },
+            {
+              "key": "Server",
+              "value": "postgrest/12.0.3 (1afd98a)"
+            },
+            {
+              "key": "Content-Range",
+              "value": "0-3/*"
+            },
+            {
+              "key": "Content-Type",
+              "value": "application/json; charset=utf-8"
+            }
+          ],
+          "cookie": [],
+          "body": "[\n    {\n        \"user\": 1,\n        \"paid\": 141.9,\n        \"due\": 229.3,\n        \"balance\": -87.4\n    },\n    {\n        \"user\": 2,\n        \"paid\": 125.5,\n        \"due\": 157.62,\n        \"balance\": -32.12\n    },\n    {\n        \"user\": 3,\n        \"paid\": 212.47,\n        \"due\": 92.94,\n        \"balance\": 119.53\n    },\n    {\n        \"user\": 4,\n        \"paid\": 0,\n        \"due\": 0,\n        \"balance\": 0\n    }\n]"
+        },
+        {
+          "name": "access denied",
+          "originalRequest": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "{{BASE_URL}}/rpc/get_tricount_balance?tricount_id=1",
+              "host": [
+                "{{BASE_URL}}"
+              ],
+              "path": [
+                "rpc",
+                "get_tricount_balance"
+              ],
+              "query": [
+                {
+                  "key": "tricount_id",
+                  "value": "1",
+                  "description": "- 0 pour un nouveau tricount\n- `tricount_id` du tricount dont on veut modifier le titre"
+                }
+              ]
+            }
+          },
+          "status": "Bad Request",
+          "code": 400,
+          "_postman_previewlanguage": "json",
+          "header": [
+            {
+              "key": "Transfer-Encoding",
+              "value": "chunked"
+            },
+            {
+              "key": "Date",
+              "value": "Mon, 10 Mar 2025 22:08:30 GMT"
+            },
+            {
+              "key": "Server",
+              "value": "postgrest/12.0.3 (1afd98a)"
+            },
+            {
+              "key": "Content-Type",
+              "value": "application/json; charset=utf-8"
+            }
+          ],
+          "cookie": [],
+          "body": "{\n    \"code\": \"P0001\",\n    \"details\": null,\n    \"hint\": null,\n    \"message\": \"access denied\"\n}"
+        }
+      ]
+    }
+  ],
+  "auth": {
+    "type": "bearer",
+    "bearer": [
+      {
+        "key": "token",
+        "value": "{{access_token}}",
+        "type": "string"
+      }
+    ]
+  },
+  "event": [
+    {
+      "listen": "prerequest",
+      "script": {
+        "type": "text/javascript",
+        "packages": {
+
+        },
+        "exec": [
+          ""
+        ]
+      }
+    },
+    {
+      "listen": "test",
+      "script": {
+        "type": "text/javascript",
+        "packages": {
+
+        },
+        "exec": [
+          ""
+        ]
+      }
+    }
+  ],
+  "variable": [
+    {
+      "key": "BASE_URL",
+      "value": "http://localhost:3000",
+      "type": "string"
+    },
+    {
+      "key": "access_token",
+      "value": ""
+    }
+  ]
+}
